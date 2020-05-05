@@ -1,0 +1,14 @@
+server:
+  port: 8031
+eureka:
+  instance:
+    hostname: localhost  #此处必须写本机的hostname，否则consumer无法找到
+    instance-id: ${spring.application.name}:${vacp.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8011/eureka/
+spring:
+  application:
+    name: eureka-client-server

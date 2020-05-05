@@ -1,0 +1,15 @@
+server:
+  port: 8033
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${vacp.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8011/eureka/
+spring:
+  application:
+    name: eureka-client-consumer-feign
+
