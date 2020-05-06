@@ -1,0 +1,13 @@
+server:
+  port: 8035
+eureka:
+  instance:
+    hostname: localhost  #此处必须写本机的hostname，否则consumer无法找到
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8011/eureka/
+spring:
+  application:
+    name: eureka-ribbon-comsumer
