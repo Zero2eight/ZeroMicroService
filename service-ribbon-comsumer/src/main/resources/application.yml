@@ -2,7 +2,7 @@ server:
   port: 8035
 eureka:
   instance:
-    hostname: localhost  #此处必须写本机的hostname，否则consumer无法找到
+    hostname: localhost #姝ゅ闇�濉啓localhost锛屼笉鐒朵細鏃犳硶鎵惧埌涓绘満
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -11,3 +11,5 @@ eureka:
 spring:
   application:
     name: eureka-ribbon-comsumer
+#    name: config-client
+

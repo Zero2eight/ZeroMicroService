@@ -1,6 +1,7 @@
 package com.example.serviceribboncomsumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,5 +15,13 @@ public class AppController {
     @RequestMapping(value = "/factorial/{n}")
     public int factorial(@PathVariable("n") int n) {
         return restTemplate.getForObject("http://eureka-client-server/factorial/{n}", Integer.class, n);
+    }
+
+    @Value("${info.name}")
+    private String name;
+
+    @RequestMapping(value = "config-test")
+    public String configTest() {
+        return this.name;
     }
 }

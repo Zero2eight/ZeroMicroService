@@ -1,0 +1,22 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      #如果要查看config client端的效果，参见项目eureka-ribbon-comsumer
+      server:
+        git:
+          uri: https://github.com/Zero2eight/ConfigRepo.git
+          username: Zero2eight
+          password: Gcf1234@byd
+eureka:
+  instance:
+    hostname: localhost  #此处必须写本机的hostname，否则consumer无法找到
+    instance-id: ${spring.application.name}:${vacp.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8011/eureka/

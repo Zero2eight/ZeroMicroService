@@ -1,0 +1,30 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: rewritepath_route
+          uri: lb://eureka-ribbon-comsumer  #如果是基于注册中心（例如Eureka）来发现服务，那么应该以lb://打头，而非http://
+          predicates:
+            - Path=/foo/**
+          filters:
+            - RewritePath=/foo/(?<segment>.*), /factorial/5
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+eureka:
+  instance:
+    hostname: localhost  #此处必须写本机的hostname，否则consumer无法找到
+    instance-id: ${spring.application.name}:${vacp.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8011/eureka/
